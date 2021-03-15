@@ -1,0 +1,64 @@
+
+
+{% include 'navvbar.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block frm_content %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+<div class="container">
+
+          <h1 class="row justify-content-center">Réseaux Revendeurs</h1>
+    <hr class="mt-0 mb-4">
+
+    </div>
+<h1>
+    <center style="color:blue" ;>GRUPO PUMAL SPA</center>
+</h1>
+
+
+<form method='POST' id="RowProduitsForm" data-wilaya-url="{% url 'load-wilaya'%}"> {% csrf_token %}
+    <div class="row justify-content-center">
+    <div class="col-6">
+        {{mon_form| crispy}}
+    </div>
+        </div>
+<div class="row justify-content-center">
+        <div class="col-10">
+            <div class="input-group">
+     {{ formset.management_form}}
+    {% for form in formset %}
+                <br>
+        {{ form | crispy}}
+        <hr> <br>
+
+    {% endfor %}
+
+
+
+          </div>
+        </div>
+
+</div>
+    <div class="row justify-content-center">
+    <button type="submit" class="btn btn-success">Save </button>
+        </div>
+</form>
+
+
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script  src="{% static 'pro/js/wilaya.js' %}"></script>
+{% endblock %}

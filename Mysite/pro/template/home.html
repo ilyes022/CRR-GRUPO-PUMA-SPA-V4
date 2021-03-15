@@ -1,0 +1,42 @@
+
+{% include 'navvbar.html' %}
+
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Products</title>
+</head>
+<body>
+
+
+
+<h1>List of Products</h1>
+<table calss = "table table-dark" border="1" width="600">
+    <thead>
+    <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Stock</th>
+    <th scope="col">Description</th>
+    </tr>
+    </thead>
+
+        <tbody>
+
+        {% for Products in AllProducts %}
+        <tr>
+        <td>{{ Products.name }}</td>
+        <td> {{ Products.price }}</td>
+        <td>{{ Products.stock}} </td>
+            <td>{{ Products.description}} </td>
+
+        </tr>
+        </tbody>
+
+        {% endfor %}
+        </table>
+
+
+</body>
+    </html>

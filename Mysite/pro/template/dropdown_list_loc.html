@@ -1,0 +1,6 @@
+
+
+<option value="">---------------------</option>
+{% for localite in commune %}
+<option value="{{ localite.pk }}">{{ localite.name }}</option>
+{% endfor %}

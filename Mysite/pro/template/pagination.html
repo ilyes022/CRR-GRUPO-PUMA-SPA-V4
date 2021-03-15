@@ -1,0 +1,13 @@
+{% if AllClients.has_previous %}
+
+    <a href="?page={{ AllClients.previous_page_number }}">previous</a>
+
+{% endif %}
+
+<span>Page {{ AllClients.number }} of {{ AllClients.paginator.num_pages }}</span>
+
+{% if AllClients.has_next %}
+
+    <a href="?page={{ AllClients.next_page_number }}">next</a>
+
+{% endif %}

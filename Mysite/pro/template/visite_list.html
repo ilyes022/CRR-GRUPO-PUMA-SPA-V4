@@ -1,0 +1,155 @@
+{% include 'navvbar.html' %}
+{% load crispy_forms_tags %}
+
+{% block frm_content %}
+
+<html lang="en">
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<head>
+  <title>Visites</title>
+
+</head>
+<body>
+
+    <div class="container">
+
+          <h1 class="row justify-content-center">Réseaux Revendeurs</h1>
+        <hr>
+
+        </div>
+    <div class="container">
+
+    <div class="row">
+            <div class="col">
+              <div class="card card-body">
+                <form class="form-inline my-2 my-lg-0" method="get">
+
+                {{myvisiteFilter.form | crispy}}
+                    <hr>
+                <button class="btn btn-primary" type = "submit"> Filtrer</button>
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+    <div class="container">
+        <hr>
+    <div class="col-md">
+
+        <a class="btn btn-primary" href="{% url 'creer_visite_test'  %}" role="button">Créer une Visite </a>
+        <hr>
+    </div>
+        </div>
+
+
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+
+            <th>Titre</th>
+            <th>Région</th>
+            <th>Wilaya</th>
+            <th>localité</th>
+
+            <th>Date</th>
+
+            <th>Status</th>
+
+            <th></th>
+
+      </tr>
+    </thead>
+
+                  {% for visite in page_obj %}
+
+    <tbody>
+
+      <tr>
+          <td>{{visite.Titre}}</td>
+
+        <td>{{visite.région}}</td>
+
+        <td>{{visite.wilaya}}</td>
+          <td>{{visite.localité}}</td>
+
+        <td>{{visite.date}}</td>
+
+
+
+
+
+          <td>
+              {% if visite.status == 'Planifiée' %}
+              <a  class="btn btn-sm btn-success">
+              {{visite.status}}
+              </a>
+                {% elif visite.status == 'Changée' %}
+               <a class="btn btn-sm btn-warning">
+              {{visite.status}}
+              </a>
+              {% elif visite.status == 'Annulée' %}
+               <a class="btn btn-sm btn-danger">
+              {{visite.status}}
+              </a>
+                {% else %}
+              <a href="" class="btn btn-sm btn-dark">
+              {{visite.status}}
+              </a>
+                 {% endif %}
+          </td>
+
+          <td><a class="btn btn-sm btn-danger" href="{% url 'update_visite' visite.id %}">Modifier</a></td>
+
+
+
+
+
+      </tr>
+
+    </tbody>
+
+        {% endfor %}
+
+  </table>
+
+                       <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; première-</a>
+            <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} Sur {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">suivante-</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">dèrniere &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+
+</div>
+
+</body>
+
+
+</html>
+
+
+{% endblock %}

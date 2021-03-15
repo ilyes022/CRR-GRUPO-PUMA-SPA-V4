@@ -1,0 +1,39 @@
+
+{% extends 'basecalendar.html' %}
+{% include 'navvbar.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<link rel="stylesheet"  href="{% static 'pro/style2.css' %}" />
+
+
+
+{% block content %}
+
+
+    <div class="clearfix">
+			<a class="btn btn-primary" href="{% url 'event_new'  %}" role="button">Planifier une Visite </a>
+    </div>
+
+    <hr>
+
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Mois précédent </a>
+
+	<a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Mois prochain </a>
+</div>
+
+
+
+
+{{ calendar }}
+
+{% endblock %}

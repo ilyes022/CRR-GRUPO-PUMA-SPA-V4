@@ -1,0 +1,107 @@
+{% include 'navvbar.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+<div class="container">
+
+          <h1 class="row justify-content-center">Réseaux Revendeurs</h1>
+    <hr class="mt-0 mb-4">
+<h6>
+	<span class="font-weight-bold" style="color:blue">(Client): </span>
+	{{customer.nom}},
+	<span class="font-weight-bold" style="color:blue">(Région) :</span>
+	{{customer.région}},
+	<span class="font-weight-bold" style="color:blue">(Wilaya) :</span>
+	{{customer.wilaya}},
+	<span class="font-weight-bold" style="color:blue">(Localité): </span>
+	{{customer.localité}}</h6>
+	<hr>
+	<span class="font-weight-bold"> Nombre de BC's = {{bc_count}}</span>
+
+    </div>
+
+
+<div class="container">
+
+
+
+
+
+
+		<hr>
+
+		<span class="font-weight-bold">Créer un bon de commande :</span> Veuillez confirmer le Client :
+
+		<form  class="col-md-4"	 method="post">
+
+          {% csrf_token %}
+
+
+			{{ bc_form | crispy}}
+			<button type="submit" class="btn btn-success" onclick="return confirm('Veuillez continuer?');"> Créer </button> <a class="btn btn-primary" href="{% url 'Liste_Des_Clients'   %}" role="button">Liste Des Clients</a>
+
+
+
+
+		</form>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-striped">
+				<tr>
+
+
+                    <th>BC</th>
+
+					<th>Date</th>
+					<th>Total</th>
+				</tr>
+
+
+
+				{% for bc in page_obj %}
+
+				<tr>
+
+                    <td> <a href="{% url 'bc' customer.id bc.id %}">#BC_{{bc.id}}</a></td>
+
+                    <td>{{bc.date}}</td>
+					<td><span class="font-weight-bold">{{bc.get_bc_total|floatformat:2|intcomma}}DA </span></td>
+
+				{% endfor %}
+
+			</table>
+		</div>
+
+
+		<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; première-</a>
+            <a href="?page={{ page_object.previous_page_number }}">précédente</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} Sur {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">suivante-</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">dèrniere &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+</div>
+
+	</div>
+</div>

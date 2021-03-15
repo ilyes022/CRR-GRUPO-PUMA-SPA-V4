@@ -1,0 +1,4 @@
+<option value="">---------------------</option>
+{% for distributeur in cities %}
+<option value="{{ distributeur.pk }}">{{ distributeur.nom }}</option>
+{% endfor %}
