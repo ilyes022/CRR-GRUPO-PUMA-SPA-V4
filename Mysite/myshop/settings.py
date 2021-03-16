@@ -91,11 +91,11 @@ WSGI_APPLICATION = 'myshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'test6',
+        'NAME': 'crr-puma',
         'USER':'postgres',
-        'PASSWORD':'Puma@2021',
-        'HOST':'127.0.0.1',
-        'PORT':'5433',
+        'PASSWORD':'Puma@crr2021',
+        'HOST':'10.10.10.20',
+        'PORT':'5440',
     }
 }
 
